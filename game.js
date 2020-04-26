@@ -17,6 +17,7 @@ $(document).keypress(()=>{
 })
 
 function nextSequance() {
+    userClickedPattern = [];
     level = level + 1;
     // console.log("in nextSequance()")
     var randomNumber = Math.floor(Math.random()*10);
@@ -59,28 +60,32 @@ function animatePress(currentColor){
 function checkAnswer(currentLevel){
     // console.log(currentLevel);
     var result
-    if(JSON.stringify(gamePattern)==JSON.stringify(userClickedPattern)){
+    if(gamePattern[currentLevel] == userClickedPattern[currentLevel]){
         console.log("success"); 
         result = 1;
+        if(userClickedPattern.length == gamePattern.length){
+            setTimeout(() => {
+                nextSequance();
+            }, 1000);
+        }
+
     }
     else{
         console.log("you are failure");
         result = 0;
     }
-    if(result){
-        setTimeout(() => {
-            nextSequance();
-        }, 1000);
-    }
-    else{
-        gameOver();
-    }
-}
+//     if(result){
+//         
+//     }
+//     else{
+//         gameOver();
+//     }
+// }
 
-function gameOver(){
-    $("body").addClass("game-over");
-    setTimeout(()=> {$("body").removeClass("game-over");},100);
-    playSound("wrong");
-    started = false;
-    $("h1").text("Press any key to play again");
-}
+// function gameOver(){
+//     $("body").addClass("game-over");
+//     setTimeout(()=> {$("body").removeClass("game-over");},100);
+//     playSound("wrong");
+//     started = false;
+//     $("h1").text("Press any key to play again");
+// }
