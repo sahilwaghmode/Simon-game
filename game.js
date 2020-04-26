@@ -56,7 +56,8 @@ function animatePress(currentColor) {
   }
   
 
-  function checkAnswer(currentLevel) {
+
+function checkAnswer(currentLevel) {
 
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
       console.log("success");
@@ -90,3 +91,4 @@ function startOver(){
     gamePattern = [];
     started = false;
 }
+
